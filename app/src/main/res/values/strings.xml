@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">LAKE Enterprises</string>
+    <string name="firstNumLabel">Enter the first number:</string>
+    <string name="secondNumLabel">Enter the second number:</string>
+    <string name="FirstNumHint">First Number</string>
+    <string name="SecondNumHint">Second Number</string>
+    <string name="answerText">Answer</string>
+</resources>
