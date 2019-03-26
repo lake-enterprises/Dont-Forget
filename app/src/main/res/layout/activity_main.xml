@@ -6,91 +6,52 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:layout_width="414dp"
-        android:layout_height="732dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextView
+        android:id="@+id/TitleView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="Don't Forget It"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.447"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/stopButton"
+        android:layout_width="235dp"
+        android:layout_height="241dp"
+        android:layout_marginTop="323dp"
+        android:background="#0000"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TitleView"
+        app:srcCompat="@drawable/newStop" />
+
+    <TextView
+        android:id="@+id/distanceLabel"
+        android:layout_width="306dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="72dp"
+        android:text="Distance from Walker: "
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TitleView" />
+
+    <EditText
+        android:id="@+id/Distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/distanceLabel" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/firstNumLabel"
-            android:layout_width="match_parent"
-            android:layout_height="29dp"
-            android:text="@string/firstNumLabel" />
-
-        <EditText
-            android:id="@+id/firstNum"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/FirstNumHint"
-            android:inputType="numberDecimal" />
-
-        <TextView
-            android:id="@+id/secondNum"
-            android:layout_width="match_parent"
-            android:layout_height="29dp"
-            android:text="@string/secondNumLabel" />
-
-        <EditText
-            android:id="@+id/firstNum2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/SecondNumHint"
-            android:inputType="numberDecimal" />
-
-        <LinearLayout
-            android:id="@+id/buttons"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/add"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="add"
-                android:text="+" />
-
-            <Button
-                android:id="@+id/subtract"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:onClick="subtract"
-                android:text="-" />
-
-            <Button
-                android:id="@+id/multiply"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="multiply"
-                android:text="x" />
-
-            <Button
-                android:id="@+id/divide"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="divide"
-                android:text="÷" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/answerText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/answerText" />
-
-    </LinearLayout>
 </android.support.constraint.ConstraintLayout>
