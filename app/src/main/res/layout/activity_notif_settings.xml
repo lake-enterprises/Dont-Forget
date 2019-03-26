@@ -20,7 +20,8 @@
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/backButton" />
+            android:text="@string/back"
+            android:textSize="25sp"/>
 
         <TextView
             android:id="@+id/notifyText"
@@ -28,7 +29,8 @@
             android:layout_height="wrap_content"
             android:text="@string/distance"
             android:textSize="25sp"
-            android:textColor="#f0f0f0"/>
+            android:textColor="#f0f0f0"
+            android:layout_marginLeft="20dp"/>
 
         <NumberPicker
             android:id="@+id/time"
@@ -45,7 +47,8 @@
             android:layout_marginTop="10dp"
             android:text="@string/time"
             android:textSize="25sp"
-            android:textColor="#f0f0f0"/>
+            android:textColor="#f0f0f0"
+            android:layout_marginLeft="20dp"/>
 
         <NumberPicker
             android:id="@+id/distance"
