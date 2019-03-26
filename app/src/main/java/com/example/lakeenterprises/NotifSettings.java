@@ -6,8 +6,6 @@ import android.app.Activity;
 import android.widget.TextView;
 import android.widget.NumberPicker;
 
-import com.example.lakeenterprises.R;
-
 public class NotifSettings extends Activity {
 
     @Override
@@ -16,11 +14,11 @@ public class NotifSettings extends Activity {
         setContentView(R.layout.activity_main);
 
         //Get the widgets reference from XML layout
-        final TextView tv = (TextView) findViewById(R.id.tv);
-        NumberPicker np = (NumberPicker) findViewById(R.id.np);
+        final TextView notify = findViewById(R.id.notifyText);
+        NumberPicker np = findViewById(R.id.distance);
 
         //Set TextView text color
-        tv.setTextColor(Color.parseColor("#ffd32b3b"));
+        notify.setTextColor(Color.parseColor("#d89fsa"));
 
         //Populate NumberPicker values from minimum and maximum value range
         //Set the minimum value of NumberPicker
@@ -36,7 +34,7 @@ public class NotifSettings extends Activity {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal){
                 //Display the newly selected number from picker
-                tv.setText("Selected Number : " + newVal);
+                notify.setText(getString(R.string.npdistance));
             }
         });
 
