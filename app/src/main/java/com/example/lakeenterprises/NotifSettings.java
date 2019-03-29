@@ -1,10 +1,13 @@
 package com.example.lakeenterprises;
 
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.sip.SipSession;
 import android.os.Bundle;
 import android.app.Activity;
 import android.widget.TextView;
 import android.widget.NumberPicker;
+import android.widget.Toast;
 
 public class NotifSettings extends Activity {
 
@@ -13,30 +16,49 @@ public class NotifSettings extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Get the widgets reference from XML layout
+        //References to xml
         final TextView notify = findViewById(R.id.notifyText);
-        NumberPicker np = findViewById(R.id.distance);
+        NumberPicker npd = findViewById(R.id.distance);
+        NumberPicker npt = findViewById(R.id.time);
 
         //Set TextView text color
         notify.setTextColor(Color.parseColor("#d89fsa"));
 
-        //Populate NumberPicker values from minimum and maximum value range
-        //Set the minimum value of NumberPicker
-        np.setMinValue(0);
-        //Specify the maximum value/number of NumberPicker
-        np.setMaxValue(10);
+        //Min, max, and wrap for distance
+        npd.setMinValue(2);
+        npd.setMaxValue(10);
+        npd.setWrapSelectorWheel(false);
 
-        //Gets whether the selector wheel wraps when reaching the min/max value.
-        np.setWrapSelectorWheel(true);
+        //Min, max, and wrap for time
+        npt.setMinValue(1);
+        npt.setMaxValue(60);
+        npt.setWrapSelectorWheel(false);
 
-        //Set a value change listener for NumberPicker
-        np.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+        final int[] newDistance = new int[1];
+
+       npd.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+           @Override
+           public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+               newDistance[0] = newVal;
+           }
+       });
+
+
+        final int[] newTime = new int[1];
+
+        npt.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
-            public void onValueChange(NumberPicker picker, int oldVal, int newVal){
-                //Display the newly selected number from picker
-                notify.setText(getString(R.string.npdistance));
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                newTime[0] = newVal;
             }
         });
 
+        Intent intent = new Intent(this,MainActivity.class);
+        intent.putExtra("newDistance", newDistance[0]);
+        intent.putExtra("newTime", newTime[0]);
+        startActivity(intent);
+
     }
+
 }
+
