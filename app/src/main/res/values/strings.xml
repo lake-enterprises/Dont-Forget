@@ -2,5 +2,12 @@
     <string name="app_name">LAKE Enterprises</string>
     <string name="distance">Notify me when the distance is greater than:</string>
     <string name="time">Notify me when the time is greater than:</string>
-    <string name="back">BACK</string>
+    <string name="home">HOME</string>
+    <string name="recordings">RECORDINGS</string>
+    <string name="settings">SETTINGS</string>
+    <string name="menu">MENU</string>
+    <string name="newRecord">New Recording</string>
+    <string name="npdistance"></string>
+    <string name="title">Don\'t Forget!</string>
+    <string name="distanceText">Distance from Walker</string>
 </resources>

@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:text="Don't Forget It"
+        android:text="@string/title"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.447"
@@ -29,41 +29,43 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TitleView"
-        app:srcCompat="@drawable/newStop" />
+        app:srcCompat="@drawable/newstop" />
 
     <TextView
         android:id="@+id/distanceLabel"
         android:layout_width="306dp"
         android:layout_height="43dp"
         android:layout_marginTop="72dp"
-        android:text="Distance from Walker: "
+        android:text="@string/distanceText"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TitleView" />
 
-    <EditText
-        android:id="@+id/Distance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:ems="10"
-        android:inputType="numberDecimal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/distanceLabel" />
-
     <Button
         android:id="@+id/menuButton"
-        android:layout_width="59dp"
+        android:layout_width="71dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="16dp"
         android:onClick="menu"
-        android:text="Button"
+        android:text="@string/menu"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/distanceText"
+        android:layout_width="231dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="74dp"
+        android:layout_marginBottom="95dp"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/stopButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/distanceLabel" />
 
 </android.support.constraint.ConstraintLayout>

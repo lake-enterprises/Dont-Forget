@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MenuActivity">
+    tools:context=".RecordingsActivity">
 
     <LinearLayout
-        android:id="@+id/menuLinearLayout"
+        android:id="@+id/recordingsLinearLayout"
         android:layout_width="395dp"
         android:layout_height="715dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="90dp"
+        android:layout_marginTop="200dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
@@ -23,34 +23,33 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/menuTitle"
+            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/menu"
+            android:text="@string/recordings"
             android:textSize="30sp" />
 
         <Button
-            android:id="@+id/homeButton"
+            android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="home"
-            android:text="@string/home"
-            android:textSize="24sp" />
-
-        <Button
-            android:id="@+id/recordingsButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="recordings"
-            android:text="@string/recordings"
-            android:textSize="24sp" />
-
-        <Button
-            android:id="@+id/settingsButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="settings"
-            android:text="@string/settings"
-            android:textSize="24sp" />
+            android:text="@string/newRecord" />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/menu2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="307dp"
+        android:layout_marginRight="307dp"
+        android:layout_marginBottom="5dp"
+        android:onClick="menu"
+        android:text="@string/menu"
+        app:layout_constraintBottom_toTopOf="@+id/recordingsLinearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>
