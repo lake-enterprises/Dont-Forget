@@ -44,7 +44,7 @@
         app:layout_constraintTop_toBottomOf="@+id/TitleView" />
 
     <Button
-        android:id="@+id/menuButton"
+        android:id="@+id/menu1"
         android:layout_width="71dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
