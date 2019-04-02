@@ -7,7 +7,7 @@
     <string name="settings">SETTINGS</string>
     <string name="menu">MENU</string>
     <string name="newRecord">New Recording</string>
-    <string name="npdistance"></string>
     <string name="title">Don\'t Forget!</string>
     <string name="distanceText">Distance from Walker</string>
+    <string name="notify">Notify me when the distance is greater than: </string>
 </resources>

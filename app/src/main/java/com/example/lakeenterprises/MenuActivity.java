@@ -12,16 +12,16 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
     }
-    public void settings(View v){
-        Intent intent = new Intent(this, NotifSettings.class);
-        startActivity(intent);
-    }
     public void recordings(View v){
         Intent intent = new Intent(this, RecordingsActivity.class);
         startActivity(intent);
     }
     public void home(View v){
         Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+    public void settings(View v){
+        Intent intent = new Intent(this, NotifSettings.class);
         startActivity(intent);
     }
 

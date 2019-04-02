@@ -24,4 +24,23 @@
         android:text="@string/settings"
         android:textSize="30sp"
         android:layout_marginTop="40dp"/>
+
+    <TextView
+        android:id="@+id/notifyText"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:textSize="24sp"
+        android:text="@string/notify" />
+
+    <NumberPicker
+        android:id="@+id/picker"
+        android:layout_width="200dp"
+        android:layout_height="400dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
+        android:theme="@style/NumberPickerText"
+        ></NumberPicker>
+
 </RelativeLayout>
