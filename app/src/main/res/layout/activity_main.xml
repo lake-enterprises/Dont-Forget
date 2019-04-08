@@ -57,15 +57,13 @@
 
     <TextView
         android:id="@+id/distanceText"
-        android:layout_width="231dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="74dp"
-        android:layout_marginBottom="95dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="251dp"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/stopButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/distanceLabel" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

@@ -11,7 +11,7 @@ public class NotifSettings extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_notif_settings);
 
         //Get the widgets reference from XML layout
         final TextView notify = findViewById(R.id.notifyText);
@@ -29,14 +29,14 @@ public class NotifSettings extends Activity {
         //Gets whether the selector wheel wraps when reaching the min/max value.
         np.setWrapSelectorWheel(true);
 
-        //Set a value change listener for NumberPicker
-        np.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-            @Override
-            public void onValueChange(NumberPicker picker, int oldVal, int newVal){
-                //Display the newly selected number from picker
-                notify.setText(getString(R.string.npdistance));
-            }
-        });
+//        //Set a value change listener for NumberPicker
+//        np.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+//            @Override
+//            public void onValueChange(NumberPicker picker, int oldVal, int newVal){
+//                //Display the newly selected number from picker
+//                notify.setText(getString(R.string.npdistance));
+//            }
+//        });
 
     }
 }

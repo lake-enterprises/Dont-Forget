@@ -119,7 +119,7 @@ public class RecordingsActivity extends AppCompatActivity {
                     mProgress.setMessage("Uploading Audio...");
                     mProgress.show();
                     Log.d(TAG, "In progress bar is displayed");
-                    StorageReference filepath=mStorage.child("Audio").child("sampleRecording");
+                    StorageReference filepath=mStorage.child("Audio").child(pathSave);
                     Log.d(TAG, "StorageRef created");
                     Uri uri=Uri.fromFile(new File(pathSave));
                     Log.d(TAG, "URI and file created");
