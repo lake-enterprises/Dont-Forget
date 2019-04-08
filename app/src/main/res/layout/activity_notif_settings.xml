@@ -9,55 +9,38 @@
     android:background="#ffffff"
     >
 
-    <LinearLayout
+    <Button
+        android:id="@+id/menu3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="menu"
+        android:text="@string/menu" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/settings"
+        android:textSize="30sp"
+        android:layout_marginTop="40dp"/>
+
+    <TextView
+        android:id="@+id/notifyText"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="#888888">
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:textSize="24sp"
+        android:text="@string/notify" />
 
-        <Button
-            android:id="@+id/menuButton1"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="menu"
-            android:text="@string/menu"
-            android:textSize="25sp" />
-
-        <TextView
-            android:id="@+id/notifyText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/distance"
-            android:textSize="25sp"
-            android:textColor="#f0f0f0"
-            android:layout_marginLeft="20dp"/>
-
-        <NumberPicker
-            android:id="@+id/time"
-            android:layout_width="119dp"
-            android:layout_height="210dp"
-            android:layout_marginStart="110dp"
-            android:layout_marginLeft="110dp"
-            android:layout_marginTop="45dp" />
-
-        <TextView
-            android:id="@+id/notifyText1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/time"
-            android:textSize="25sp"
-            android:textColor="#f0f0f0"
-            android:layout_marginLeft="20dp"/>
-
-        <NumberPicker
-            android:id="@+id/distance"
-            android:layout_width="119dp"
-            android:layout_height="210dp"
-            android:layout_marginStart="110dp"
-            android:layout_marginLeft="110dp"
-            android:layout_marginTop="45dp" />
-    </LinearLayout>
+    <NumberPicker
+        android:id="@+id/picker"
+        android:layout_width="200dp"
+        android:layout_height="400dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
+        android:theme="@style/NumberPickerText"
+        ></NumberPicker>
 
 </RelativeLayout>
