@@ -31,5 +31,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:16.1.0'
     implementation 'com.google.firebase:firebase-storage:16.1.0'
     implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.google.firebase:firebase-messaging:17.6.0'
+    implementation 'com.firebase:firebase-jobdispatcher:0.8.5'
 }
 apply plugin: 'com.google.gms.google-services'

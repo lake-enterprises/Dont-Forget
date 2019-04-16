@@ -22,11 +22,11 @@
         android:id="@+id/stopButton"
         android:layout_width="235dp"
         android:layout_height="241dp"
-        android:layout_marginTop="323dp"
+        android:layout_marginTop="264dp"
         android:background="#0000"
         android:scaleType="fitCenter"
+        android:src="@drawable/newstop"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TitleView"></ImageButton>
 
@@ -34,7 +34,7 @@
         android:id="@+id/distanceLabel"
         android:layout_width="306dp"
         android:layout_height="43dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="32dp"
         android:text="@string/distanceText"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,10 +58,21 @@
         android:id="@+id/distanceText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="251dp"
+        android:layout_marginTop="176dp"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/minValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="284dp"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
