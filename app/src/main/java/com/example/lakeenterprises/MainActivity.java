@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -16,12 +17,17 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.google.firebase.storage.FirebaseStorage;
 
 import java.io.BufferedReader;
@@ -37,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private final String TAG = "MainActivity";
     private double distance;
     private DatabaseReference mDatabase;
+    private DatabaseReference databaseReference;
     private int min;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,10 +58,10 @@ public class MainActivity extends AppCompatActivity {
 
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "outofrange")
                 .setSmallIcon(R.drawable.common_google_signin_btn_icon_dark)
-                .setContentTitle("My notification")
-                .setContentText("Much longer text that cannot fit one line...")
+                .setContentTitle("Out of Range")
+                .setContentText("Warning, user has exceeded a safe distance from their walker")
                 .setStyle(new NotificationCompat.BigTextStyle()
-                        .bigText("Much longer text that cannot fit one line..."))
+                        .bigText("Warning, user has exceeded a safe distance from their walker"))
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setContentIntent(pendingIntent);
 
@@ -68,15 +75,14 @@ public class MainActivity extends AppCompatActivity {
 
         mDatabase= FirebaseDatabase.getInstance().getReference();
         // Read from the database
-        mDatabase=mDatabase.child("pi").child("data");
-        mDatabase.addValueEventListener(new ValueEventListener() {
+        mDatabase.child("pi").child("data").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                distance= Integer.valueOf(dataSnapshot.getValue().toString());
+                distance= Double.valueOf(dataSnapshot.getValue().toString());
                 Log.d(TAG, "Value is: " + distance);
-                if(distance<15){
+                if(distance<min){
                     TextView distanceText= findViewById(R.id.distanceText);
                     distanceText.setTextColor(Color.parseColor("#FF032D"));
                     distanceText.setText("Red- out of range or check battery");
@@ -84,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                     notificationManager.notify(1, builder.build());
 
                 }
-                else if(distance>=15&&distance<=40){
+                else if(distance>=min&&distance<=40){
                     TextView distanceText= findViewById(R.id.distanceText);
                     distanceText.setTextColor(Color.parseColor("#F9C723"));
                     distanceText.setText("Yellow- keep an eye out, danger could be imminent");
@@ -105,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+
 
 
 

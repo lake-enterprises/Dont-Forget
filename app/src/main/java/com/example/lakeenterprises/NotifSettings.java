@@ -13,6 +13,9 @@ import android.widget.TextView;
 import android.widget.NumberPicker;
 import android.view.View;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.UUID;
 
 public class NotifSettings extends Activity {
@@ -21,6 +24,7 @@ public class NotifSettings extends Activity {
     NumberPicker np;
     Button saveSet;
     SharedPreferences pref;
+    DatabaseReference databaseReference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +48,7 @@ public class NotifSettings extends Activity {
 
 
         saveSet = (Button) findViewById(R.id.setCommit);
-
+        databaseReference= FirebaseDatabase.getInstance().getReference();
 
         saveSet.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -56,9 +60,11 @@ public class NotifSettings extends Activity {
                 editor.apply();
 
                 Log.d(TAG,"set value is: " + pref.getInt("user", 0));
+                databaseReference.child("settings").child("data").setValue(pref.getInt("user", 0));
             }
         });
         Log.d(TAG, "pref is:"+ pref.getInt("user", 0));
+
 
     }
 

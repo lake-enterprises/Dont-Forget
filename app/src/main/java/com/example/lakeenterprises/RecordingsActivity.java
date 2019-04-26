@@ -100,7 +100,7 @@ public class RecordingsActivity extends AppCompatActivity {
                     btnStop.setEnabled(true);
                     btnStopRecord.setEnabled(false);
                     btnRecord.setEnabled(false);
-                    btnSave.setEnabled(false);
+                    btnSave.setEnabled(true);
 
                     mediaPlayer=new MediaPlayer();
                     try{
