@@ -7,8 +7,11 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.os.Environment;
 import android.preference.PreferenceManager;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.NumberPicker;
 import android.view.View;
@@ -25,6 +28,7 @@ public class NotifSettings extends Activity {
     Button saveSet;
     SharedPreferences pref;
     DatabaseReference databaseReference;
+    Switch aSwitch;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +49,17 @@ public class NotifSettings extends Activity {
         np.setWrapSelectorWheel(false);
         np.setValue(pref.getInt("user",0));
 
+        aSwitch=(Switch) findViewById(R.id.NotifSwitch);
+        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                      startService();
+                } else {
+                    stopService();
+
+                }
+            }
+        });
 
 
         saveSet = (Button) findViewById(R.id.setCommit);
@@ -65,12 +80,19 @@ public class NotifSettings extends Activity {
         });
         Log.d(TAG, "pref is:"+ pref.getInt("user", 0));
 
-
     }
 
     public void menu(View v){
         Intent intent=new Intent(this, MenuActivity.class);
         startActivity(intent);
+    }
+    public void startService() {
+        startService(new Intent(getBaseContext(), NotificationService.class));
+    }
+
+    // Method to stop the service
+    public void stopService() {
+        stopService(new Intent(getBaseContext(), NotificationService.class));
     }
 
 }
