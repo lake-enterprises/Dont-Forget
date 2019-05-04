@@ -38,21 +38,31 @@
         android:layout_height="48dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="17dp"
-        android:text="notify me when the distance to the walker is: "
+        android:text="Have the walker play sound when the distance is: "
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/menu3" />
 
     <NumberPicker
-        android:id="@+id/picker"
-        android:layout_width="200dp"
-        android:layout_height="400dp"
+        android:id="@+id/piPicker"
+        android:layout_width="131dp"
+        android:layout_height="211dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"
         android:theme="@style/NumberPickerText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/notifyText"></NumberPicker>
+
+    <NumberPicker
+        android:id="@+id/picker"
+        android:layout_width="131dp"
+        android:layout_height="211dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="268dp"
+        android:theme="@style/NumberPickerText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/notifyText"></NumberPicker>
 
@@ -60,10 +70,10 @@
         android:id="@+id/setCommit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="552dp"
         android:text="Save Settings "
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/notifyText" />
 
@@ -71,12 +81,20 @@
         android:id="@+id/NotifSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="28dp"
         android:text="Notifications Enabled"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/picker" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="412dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="15dp"
+        android:text="Notify me when the distance is greater than"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/piPicker" />
 
 </android.support.constraint.ConstraintLayout>
 

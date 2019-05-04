@@ -18,18 +18,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/stopButton"
-        android:layout_width="235dp"
-        android:layout_height="241dp"
-        android:layout_marginTop="264dp"
-        android:background="#0000"
-        android:scaleType="fitCenter"
-        android:src="@drawable/newstop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TitleView"></ImageButton>
-
     <TextView
         android:id="@+id/distanceLabel"
         android:layout_width="306dp"
@@ -75,5 +63,29 @@
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="177dp"
+        android:layout_height="164dp"
+        android:layout_marginTop="230dp"
+        android:onClick="playSound"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/distanceLabel"
+        app:srcCompat="@drawable/download" />
+
+    <Switch
+        android:id="@+id/soundSwitch"
+        android:layout_width="100dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="55dp"
+        android:text="Switch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
 
 </android.support.constraint.ConstraintLayout>

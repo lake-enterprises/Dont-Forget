@@ -29,6 +29,7 @@ public class NotificationService extends Service {
     private DatabaseReference mDatabase;
     private int min;
 
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -37,10 +38,9 @@ public class NotificationService extends Service {
     @Override
     public void onCreate() {
         // Create an explicit intent for an Activity in your app
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, NotificationService.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
-
 
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "outofrange")
                 .setSmallIcon(R.drawable.common_google_signin_btn_icon_dark)
@@ -82,7 +82,7 @@ public class NotificationService extends Service {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence name = "Walker Notification";
             String description = "Channel Description";
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            int importance = NotificationManager.IMPORTANCE_HIGH;
             NotificationChannel channel = new NotificationChannel("notifyid", name, importance);
             channel.setDescription(description);
             // Register the channel with the system; you can't change the importance

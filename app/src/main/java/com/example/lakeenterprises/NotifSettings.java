@@ -25,6 +25,7 @@ public class NotifSettings extends Activity {
 
     private static final String TAG = "NotifSettings Java";
     NumberPicker np;
+    NumberPicker npi;
     Button saveSet;
     SharedPreferences pref;
     DatabaseReference databaseReference;
@@ -36,18 +37,23 @@ public class NotifSettings extends Activity {
         pref = PreferenceManager.getDefaultSharedPreferences(this);
 
         np = findViewById(R.id.picker);
+        npi=findViewById(R.id.piPicker);
 //        //Get the widgets reference from XML layout
-//        NumberPicker np = findViewById(R.id.picker);
 //
         //Populate NumberPicker values from minimum and maximum value range
         //Set the minimum value of NumberPicker
         np.setMinValue(0);
+        npi.setMinValue(0);
         //Specify the maximum value/number of NumberPicker
         np.setMaxValue(10);
+        npi.setMaxValue(20);
 //
         //Gets whether the selector wheel wraps when reaching the min/max value.
         np.setWrapSelectorWheel(false);
+        npi.setWrapSelectorWheel(false);
         np.setValue(pref.getInt("user",0));
+        npi.setValue(pref.getInt("pi", 0));
+
 
         aSwitch=(Switch) findViewById(R.id.NotifSwitch);
         aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -71,14 +77,15 @@ public class NotifSettings extends Activity {
             public void onClick(View view) {
                 SharedPreferences.Editor editor = pref.edit();
                 Log.d(TAG, "np is: "+np.getValue());
-                editor.putInt("user",np.getValue() );
+                editor.putInt("user",np.getValue());
+                editor.putInt("pi", -npi.getValue());
                 editor.apply();
 
                 Log.d(TAG,"set value is: " + pref.getInt("user", 0));
-                databaseReference.child("settings").child("data").setValue(pref.getInt("user", 0));
+                databaseReference.child("settings").child("data").setValue(pref.getInt("pi", 0));
             }
         });
-        Log.d(TAG, "pref is:"+ pref.getInt("user", 0));
+        Log.d(TAG, "pi is:"+ pref.getInt("pi", 0));
 
     }
 

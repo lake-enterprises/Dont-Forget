@@ -14,6 +14,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.TextView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private DatabaseReference databaseReference;
     private int min;
+    private Button stopButton;
+    private Switch aSwitch;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
 //        final NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
         min=pref.getInt("user", 0);
+
+        databaseReference=FirebaseDatabase.getInstance().getReference().child("settings").child("sound");
 
         TextView minText=findViewById(R.id.minValue);
         minText.setText(Integer.toString(min));
@@ -92,6 +99,17 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+        aSwitch=(Switch) findViewById(R.id.soundSwitch);
+        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    soundOn();
+                } else {
+                    soundOff();
+
+                }
+            }
+        });
 
 
 
@@ -119,6 +137,16 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void soundOn(){
+        databaseReference.setValue(0);
+    }
+
+    public void soundOff(){
+        databaseReference.setValue(-1);
+    }
+    public void playSound(View v){
+        databaseReference.setValue(1);
+    }
 
 
 }

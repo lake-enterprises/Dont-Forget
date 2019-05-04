@@ -12,4 +12,6 @@
     <string name="notify">Notify me when the distance is greater than: </string>
     <string name="default_notification_channel_id">notifyid</string>
     <string name="msg_token_fmt">token is %s</string>
+    <string name="stop">stop</string>
+    <string name="start">start</string>
 </resources>
