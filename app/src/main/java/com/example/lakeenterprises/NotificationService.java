@@ -28,6 +28,8 @@ public class NotificationService extends Service {
     private double distance;
     private DatabaseReference mDatabase;
     private int min;
+    private String group;
+    SharedPreferences pref;
 
 
     @Nullable
@@ -41,6 +43,9 @@ public class NotificationService extends Service {
         Intent intent = new Intent(this, NotificationService.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+        distance=0.0;
+        pref=PreferenceManager.getDefaultSharedPreferences(this);
+        group=pref.getString("GroupName", "");
 
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "outofrange")
                 .setSmallIcon(R.drawable.common_google_signin_btn_icon_dark)
@@ -57,7 +62,7 @@ public class NotificationService extends Service {
         min=pref.getInt("user", 0);
         mDatabase= FirebaseDatabase.getInstance().getReference();
         // Read from the database
-        mDatabase.child("pi").child("data").addValueEventListener(new ValueEventListener() {
+        mDatabase.child(group).child("pi").child("data").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again

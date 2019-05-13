@@ -3,11 +3,13 @@ package com.example.lakeenterprises;
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.net.Uri;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -37,12 +39,16 @@ public class RecordingsActivity extends AppCompatActivity {
     private ProgressDialog mProgress;
     private StorageReference mStorage;
     private final String TAG = "RecordingsActivity";
+    SharedPreferences pref;
+    private String group;
 
     final int REQUEST_PERMISSION_CODE= 1000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recordings);
+        pref= PreferenceManager.getDefaultSharedPreferences(this);
+        group=pref.getString("GroupName", "");
 
        //Request runtime permissions
         if(!checkPermissionFromDevice())
@@ -62,7 +68,7 @@ public class RecordingsActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     if(checkPermissionFromDevice()){
 
-                    pathSave= Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+ UUID.randomUUID().toString()+"_audio_record.3gp";
+                    pathSave= Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+group+ UUID.randomUUID().toString()+"_audio_record.3gp";
                     setupMediaRecorder();
                     try {
                         mediaRecorder.prepare();

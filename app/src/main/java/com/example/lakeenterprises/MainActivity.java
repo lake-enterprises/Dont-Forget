@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private int min;
     private Switch aSwitch;
+    private String group;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,16 +43,19 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
         min=pref.getInt("user", 0);
+        group=pref.getString("GroupName", "");
+        Log.d(TAG, "group name is:"+group);
+        distance=0.0;
 
 
-        databaseReference=FirebaseDatabase.getInstance().getReference().child("settings").child("sound");
+        databaseReference=FirebaseDatabase.getInstance().getReference().child(group).child("settings").child("sound");
 
         TextView minText=findViewById(R.id.minValue);
         minText.setText(Integer.toString(min));
 
         mDatabase= FirebaseDatabase.getInstance().getReference();
         // Read from the database
-        mDatabase.child("pi").child("data").addValueEventListener(new ValueEventListener() {
+        mDatabase.child(group).child("pi").child("data").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again

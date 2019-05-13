@@ -30,11 +30,13 @@ public class NotifSettings extends Activity {
     SharedPreferences pref;
     DatabaseReference databaseReference;
     Switch aSwitch;
+    String group;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notif_settings);
         pref = PreferenceManager.getDefaultSharedPreferences(this);
+        group=pref.getString("GroupName", "");
 
         np = findViewById(R.id.picker);
         npi=findViewById(R.id.piPicker);
@@ -82,7 +84,8 @@ public class NotifSettings extends Activity {
                 editor.apply();
 
                 Log.d(TAG,"set value is: " + pref.getInt("user", 0));
-                databaseReference.child("settings").child("data").setValue(pref.getInt("pi", 0));
+                databaseReference.child(group).child("settings").child("data").setValue(pref.getInt("pi", 0));
+                databaseReference.child(group).child("settings").child("user").setValue(pref.getInt("user", 0));
             }
         });
         Log.d(TAG, "pi is:"+ pref.getInt("pi", 0));
