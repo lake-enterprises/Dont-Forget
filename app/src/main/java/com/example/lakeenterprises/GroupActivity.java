@@ -10,6 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+/**
+ * GroupActivity allows user to join a group connected to a device or create a new one
+ */
 public class GroupActivity extends AppCompatActivity {
     Button okayButton;
     EditText newGroup;
@@ -34,17 +37,17 @@ public class GroupActivity extends AppCompatActivity {
             //On click function
             public void onClick(View view) {
                 if (!newGroup.getText().toString().isEmpty()){
-                    Log.d("GroupActivity", "groupname is"+newGroup.getText().toString());
+                    Log.d("GroupActivity", "groupname is"+newGroup.getText().toString().replaceAll("\\s", ""));
                     SharedPreferences.Editor editor = preferences.edit();
-                    editor.putString("GroupName", newGroup.getText().toString());
+                    editor.putString("GroupName", newGroup.getText().toString().replaceAll("\\s", ""));
                     editor.apply();
                     Log.d("GroupActivity", "groupname is"+preferences.getString("GroupName", ""));
                     startActivity(intent);
                 }
                 else if (!joinGroup.getText().toString().isEmpty()){
-                    Log.d("GroupActivity", "groupname is"+joinGroup.getText().toString());
+                    Log.d("GroupActivity", "groupname is"+joinGroup.getText().toString().replaceAll("\\s", ""));
                     SharedPreferences.Editor editor = preferences.edit();
-                    editor.putString("GroupName", joinGroup.getText().toString());
+                    editor.putString("GroupName", joinGroup.getText().toString().replaceAll("\\s", ""));
                     editor.apply();
                     Log.d("GroupActivity", "groupname is"+preferences.getString("GroupName", ""));
                     startActivity(intent);

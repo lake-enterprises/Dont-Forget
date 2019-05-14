@@ -17,11 +17,13 @@
 
 
         <ImageView
-            android:layout_width="300dp"
-            android:layout_height="300dp"
+            android:layout_width="140dp"
+            android:layout_height="161dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="30dp"
-            android:src="@drawable/common_google_signin_btn_icon_dark" />
+            android:src="@drawable/common_google_signin_btn_icon_dark"
+            app:srcCompat="@drawable/clearlogo"
+            tools:srcCompat="@drawable/clearlogo" />
 
         <!--<android.support.design.widget.TextInputLayout-->
             <!--android:layout_width="match_parent"-->

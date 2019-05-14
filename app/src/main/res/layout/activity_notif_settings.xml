@@ -39,7 +39,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="17dp"
         android:text="Have the walker play sound when the distance is: "
-        android:textSize="14sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/menu3" />
@@ -93,6 +93,7 @@
         android:layout_height="31dp"
         android:layout_marginTop="15dp"
         android:text="Notify me when the distance is greater than"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/piPicker" />
 

@@ -20,6 +20,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+/**
+ * User signs into Firebase with email that has already been registered, allows user to read and write to Firebase
+ */
+
 public class LoginActivity extends AppCompatActivity {
 
     private EditText inputEmail, inputPassword;

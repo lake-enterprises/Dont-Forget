@@ -68,7 +68,7 @@ public class RecordingsActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     if(checkPermissionFromDevice()){
 
-                    pathSave= Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+group+ UUID.randomUUID().toString()+"_audio_record.3gp";
+                    pathSave= Environment.getExternalStorageDirectory().getPath()+"/"+ UUID.randomUUID().toString()+"_audio_record.3gp";
                     setupMediaRecorder();
                     try {
                         mediaRecorder.prepare();
@@ -125,7 +125,7 @@ public class RecordingsActivity extends AppCompatActivity {
                     mProgress.setMessage("Uploading Audio...");
                     mProgress.show();
                     Log.d(TAG, "In progress bar is displayed");
-                    StorageReference filepath=mStorage.child("Audio").child(pathSave);
+                    StorageReference filepath=mStorage.child("Audio").child(group).child(pathSave);
                     Log.d(TAG, "StorageRef created");
                     Uri uri=Uri.fromFile(new File(pathSave));
                     Log.d(TAG, "URI and file created");

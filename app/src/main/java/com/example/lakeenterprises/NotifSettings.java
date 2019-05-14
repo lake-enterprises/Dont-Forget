@@ -15,6 +15,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.NumberPicker;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -31,6 +32,7 @@ public class NotifSettings extends Activity {
     DatabaseReference databaseReference;
     Switch aSwitch;
     String group;
+    private Toast toast;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +88,7 @@ public class NotifSettings extends Activity {
                 Log.d(TAG,"set value is: " + pref.getInt("user", 0));
                 databaseReference.child(group).child("settings").child("data").setValue(pref.getInt("pi", 0));
                 databaseReference.child(group).child("settings").child("user").setValue(pref.getInt("user", 0));
+                toast.makeText(getApplicationContext(), "Settings have been saved", Toast.LENGTH_SHORT).show();
             }
         });
         Log.d(TAG, "pi is:"+ pref.getInt("pi", 0));
