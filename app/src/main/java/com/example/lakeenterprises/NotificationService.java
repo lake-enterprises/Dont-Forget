@@ -23,6 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+//Service to send notifications
 public class NotificationService extends Service {
     private final String TAG = "NotificationService";
     private double distance;
@@ -32,11 +33,19 @@ public class NotificationService extends Service {
     SharedPreferences pref;
 
 
+    /**
+     * IBinder allows client to communicate with service
+     * @return null
+     */
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
         return null;
     }
+
+    /**
+     * Creates service
+     */
     @Override
     public void onCreate() {
         // Create an explicit intent for an Activity in your app
@@ -47,6 +56,7 @@ public class NotificationService extends Service {
         pref=PreferenceManager.getDefaultSharedPreferences(this);
         group=pref.getString("GroupName", "");
 
+        //Notification builder creates notification
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "outofrange")
                 .setSmallIcon(R.drawable.common_google_signin_btn_icon_dark)
                 .setContentTitle("Out of Range")
@@ -54,9 +64,12 @@ public class NotificationService extends Service {
                 .setStyle(new NotificationCompat.BigTextStyle()
                         .bigText("Warning, user has exceeded a safe distance from their walker"))
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setContentIntent(pendingIntent);
+                .setContentIntent(pendingIntent)
+                .setWhen(System.currentTimeMillis());
 
         createNotificationChannel();
+
+        //Notfication Manages handles all notifications
         final NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
         min=pref.getInt("user", 0);
@@ -81,6 +94,10 @@ public class NotificationService extends Service {
             }
         });
     }
+
+    /**
+     * Creates notification channel, necessary for newer Android APIs (26+)
+     */
     private void createNotificationChannel() {
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library
@@ -96,10 +113,16 @@ public class NotificationService extends Service {
             notificationManager.createNotificationChannel(channel);
         }
     }
+
+    /**
+     * Final call when app is destroyed
+     */
     @Override
     public void onDestroy(){
         super.onDestroy();
     }
+
+    //Action when app is opened
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 

@@ -22,6 +22,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.UUID;
 
+/**
+ * Activity to set up distance threshhold for notifications and audio messages
+ */
 public class NotifSettings extends Activity {
 
     private static final String TAG = "NotifSettings Java";
@@ -33,6 +36,11 @@ public class NotifSettings extends Activity {
     Switch aSwitch;
     String group;
     private Toast toast;
+
+    /**
+     * Creates page with number pickers for each setting
+     * @param savedInstanceState Bundle object
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +67,7 @@ public class NotifSettings extends Activity {
         npi.setValue(pref.getInt("pi", 0));
 
 
+        //Checks for switch on; if on, then Notification Service is enabled
         aSwitch=(Switch) findViewById(R.id.NotifSwitch);
         aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -72,6 +81,7 @@ public class NotifSettings extends Activity {
         });
 
 
+        //Save settings button
         saveSet = (Button) findViewById(R.id.setCommit);
         databaseReference= FirebaseDatabase.getInstance().getReference();
 
@@ -95,10 +105,13 @@ public class NotifSettings extends Activity {
 
     }
 
+    //Takes you back to Menu
     public void menu(View v){
         Intent intent=new Intent(this, MenuActivity.class);
         startActivity(intent);
     }
+
+    //starts notification service
     public void startService() {
         startService(new Intent(getBaseContext(), NotificationService.class));
     }
