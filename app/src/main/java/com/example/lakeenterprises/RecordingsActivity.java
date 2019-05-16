@@ -19,8 +19,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -50,64 +52,50 @@ public class RecordingsActivity extends AppCompatActivity {
         pref= PreferenceManager.getDefaultSharedPreferences(this);
         group=pref.getString("GroupName", "");
 
-       //Request runtime permissions
+        //Request runtime permissions
         if(!checkPermissionFromDevice())
             requestPermission();
 
         //Init View
-        btnPlay= (Button)findViewById(R.id.play);
-        btnRecord= (Button)findViewById(R.id.record);
-        btnStop= (Button)findViewById(R.id.stop);
-        btnStopRecord= (Button)findViewById(R.id.StopRecord);
+//        btnPlay= (Button)findViewById(R.id.play);
+//        btnRecord= (Button)findViewById(R.id.record);
         btnSave=(Button)findViewById(R.id.save);
         mStorage= FirebaseStorage.getInstance().getReference();
         mProgress=new ProgressDialog(this);
 
-            btnRecord.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+        ToggleButton toggleRecord = (ToggleButton) findViewById(R.id.record);
+        toggleRecord.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    // The toggle is enabled
                     if(checkPermissionFromDevice()){
 
-                    pathSave= Environment.getExternalStorageDirectory().getPath()+"/"+ UUID.randomUUID().toString()+"_audio_record.3gp";
-                    setupMediaRecorder();
-                    try {
-                        mediaRecorder.prepare();
-                        mediaRecorder.start();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    btnStopRecord.setEnabled(true);
-                    btnPlay.setEnabled(false);
-                    btnStop.setEnabled(false);
-                    btnSave.setEnabled(false);
-                    btnRecord.setEnabled(false);
+                        pathSave= Environment.getExternalStorageDirectory().getPath()+"/"+ UUID.randomUUID().toString()+"_audio_record.3gp";
+                        setupMediaRecorder();
+                        try {
+                            mediaRecorder.prepare();
+                            mediaRecorder.start();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
 
-                    Toast.makeText(RecordingsActivity.this, "Recording...", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RecordingsActivity.this, "Recording...", Toast.LENGTH_SHORT).show();
                     }
-                    else{
+                    else {
                         requestPermission();
                     }
-                }
-            });
-            btnStopRecord.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+                } else {
+                    // The toggle is disabled
                     mediaRecorder.stop();
-                    btnStopRecord.setEnabled(false);
-                    btnPlay.setEnabled(true);
-                    btnRecord.setEnabled(true);
-                    btnStop.setEnabled(false);
-                    btnSave.setEnabled(true);
                 }
-            });
-            btnPlay.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    btnStop.setEnabled(true);
-                    btnStopRecord.setEnabled(false);
-                    btnRecord.setEnabled(false);
-                    btnSave.setEnabled(true);
+            }
+        });
 
+        ToggleButton togglePlay = (ToggleButton) findViewById(R.id.play);
+        togglePlay.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    // The toggle is enabled
                     mediaPlayer=new MediaPlayer();
                     try{
                         mediaPlayer.setDataSource(pathSave);
@@ -117,47 +105,109 @@ public class RecordingsActivity extends AppCompatActivity {
                     }
                     mediaPlayer.start();
                     Toast.makeText(RecordingsActivity.this, "Playing...", Toast.LENGTH_SHORT).show();
-                }
-            });
-            btnSave.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mProgress.setMessage("Uploading Audio...");
-                    mProgress.show();
-                    Log.d(TAG, "In progress bar is displayed");
-                    StorageReference filepath=mStorage.child("Audio").child(group).child(pathSave);
-                    Log.d(TAG, "StorageRef created");
-                    Uri uri=Uri.fromFile(new File(pathSave));
-                    Log.d(TAG, "URI and file created");
-                    filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            Log.d(TAG, "file added successfully");
-                            mProgress.dismiss();
-                        }
-                    });
-                }
-            });
-            btnStop.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    btnRecord.setEnabled(true);
-                    btnStopRecord.setEnabled(false);
-                    btnStop.setEnabled(false);
-                    btnPlay.setEnabled(true);
-                    btnSave.setEnabled(true);
-
+                } else {
+                    // The toggle is disabled
                     if (mediaPlayer != null){
                         mediaPlayer.stop();
                         mediaPlayer.release();
                         setupMediaRecorder();
                     }
-
                 }
-            });
+            }
+        });
+//            btnRecord.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    if(checkPermissionFromDevice()){
+//
+//                    pathSave= Environment.getExternalStorageDirectory().getPath()+"/"+ UUID.randomUUID().toString()+"_audio_record.3gp";
+//                    setupMediaRecorder();
+//                    try {
+//                        mediaRecorder.prepare();
+//                        mediaRecorder.start();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                    btnStopRecord.setEnabled(true);
+//                    btnPlay.setEnabled(false);
+//                    btnStop.setEnabled(false);
+//                    btnSave.setEnabled(false);
+//                    btnRecord.setEnabled(false);
+//
+//                    Toast.makeText(RecordingsActivity.this, "Recording...", Toast.LENGTH_SHORT).show();
+//                    }
+//                    else{
+//                        requestPermission();
+//                    }
+//                }
+//            });
+//            btnStopRecord.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    mediaRecorder.stop();
+//                    btnStopRecord.setEnabled(false);
+//                    btnPlay.setEnabled(true);
+//                    btnRecord.setEnabled(true);
+//                    btnStop.setEnabled(false);
+//                    btnSave.setEnabled(true);
+//                }
+//            });
+//            btnPlay.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    btnStop.setEnabled(true);
+//                    btnStopRecord.setEnabled(false);
+//                    btnRecord.setEnabled(false);
+//                    btnSave.setEnabled(true);
+//
+//                    mediaPlayer=new MediaPlayer();
+//                    try{
+//                        mediaPlayer.setDataSource(pathSave);
+//                        mediaPlayer.prepare();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                    mediaPlayer.start();
+//                    Toast.makeText(RecordingsActivity.this, "Playing...", Toast.LENGTH_SHORT).show();
+//                }
+//            });
+//        btnStop.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    btnRecord.setEnabled(true);
+//                    btnStopRecord.setEnabled(false);
+//                    btnStop.setEnabled(false);
+//                    btnPlay.setEnabled(true);
+//                    btnSave.setEnabled(true);
+//
+//                    if (mediaPlayer != null){
+//                        mediaPlayer.stop();
+//                        mediaPlayer.release();
+//                        setupMediaRecorder();
+//                    }
+//
+//                }
+//            });
 
-
-
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mProgress.setMessage("Uploading Audio...");
+                mProgress.show();
+                Log.d(TAG, "In progress bar is displayed");
+                StorageReference filepath=mStorage.child("Audio").child(group).child(pathSave);
+                Log.d(TAG, "StorageRef created");
+                Uri uri=Uri.fromFile(new File(pathSave));
+                Log.d(TAG, "URI and file created");
+                filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        Log.d(TAG, "file added successfully");
+                        mProgress.dismiss();
+                    }
+                });
+            }
+        });
 
 
     }

@@ -21,8 +21,8 @@
             android:layout_height="161dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="30dp"
-            android:src="@drawable/common_google_signin_btn_icon_dark"
-            app:srcCompat="@drawable/clearlogo"
+            app:srcCompat
+                ="@drawable/clearlogo"
             tools:srcCompat="@drawable/clearlogo" />
 
         <!--<android.support.design.widget.TextInputLayout-->
