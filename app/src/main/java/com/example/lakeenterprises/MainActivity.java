@@ -118,20 +118,31 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * takes user to the menu page
-     * @param v
+     * @param v  @param v GUI component that connects to the menu button
      */
     public void menu(View v){
         Intent intent=new Intent(this, MenuActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * changes sound value in Firebase to enable sound playing on met distance conditions
+     */
     public void soundOn(){
         databaseReference.setValue(0);
     }
 
+    /**
+     * changes sound value in Firebase to disable sound from the device
+     */
     public void soundOff(){
         databaseReference.setValue(-1);
     }
+
+    /**
+     * changes value in firebase to play the sound unconditionally
+     * @param v GUI component that connects the method to the button on the home page
+     */
     public void playSound(View v){
         databaseReference.setValue(1);
     }

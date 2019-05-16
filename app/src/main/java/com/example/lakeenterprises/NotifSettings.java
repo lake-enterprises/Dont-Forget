@@ -57,7 +57,7 @@ public class NotifSettings extends Activity {
         np.setMinValue(0);
         npi.setMinValue(0);
         //Specify the maximum value/number of NumberPicker
-        np.setMaxValue(10);
+        np.setMaxValue(20);
         npi.setMaxValue(20);
 //
         //Gets whether the selector wheel wraps when reaching the min/max value.
@@ -91,13 +91,12 @@ public class NotifSettings extends Activity {
             public void onClick(View view) {
                 SharedPreferences.Editor editor = pref.edit();
                 Log.d(TAG, "np is: "+np.getValue());
-                editor.putInt("user",np.getValue());
+                editor.putInt("user",-np.getValue());
                 editor.putInt("pi", -npi.getValue());
                 editor.apply();
 
                 Log.d(TAG,"set value is: " + pref.getInt("user", 0));
                 databaseReference.child(group).child("settings").child("data").setValue(pref.getInt("pi", 0));
-                databaseReference.child(group).child("settings").child("user").setValue(pref.getInt("user", 0));
                 toast.makeText(getApplicationContext(), "Settings have been saved", Toast.LENGTH_SHORT).show();
             }
         });

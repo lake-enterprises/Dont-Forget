@@ -20,6 +20,10 @@ public class GroupActivity extends AppCompatActivity {
     Intent intent;
     SharedPreferences preferences;
 
+    /**
+     * creates the group page
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +34,7 @@ public class GroupActivity extends AppCompatActivity {
         newGroup=(EditText) findViewById(R.id.createNew);
         joinGroup=(EditText) findViewById(R.id.enterExisting);
         preferences= PreferenceManager.getDefaultSharedPreferences(this);
+
 
 
         okayButton.setOnClickListener(new View.OnClickListener(){
